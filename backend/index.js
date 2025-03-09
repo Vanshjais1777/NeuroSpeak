@@ -3,13 +3,30 @@ import { connect } from "mongoose";
 import { config } from "dotenv";
 import cors from "cors";
 import apiRoutes from "./routes/routes.js";
+import faceapi from 'face-api.js';
+import path from 'path';
+import { fileURLToPath } from "url";
+
+
+// Serve model files statically
 
 config();
 
 const app = express();
+<<<<<<< HEAD
 const PORT = process.env.PORT || 3000;
 console.log("this is sazid code");
+=======
+const PORT = process.env.PORT || 4000;
+
+// Fix __dirname issue
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+>>>>>>> 9bb97abdcdd65e488a1547a71155b7326a0bf943
 // Middleware
+app.use("/models", express.static(path.join(__dirname, "aiModel")));
+
 app.use(json());
 app.use(cors());
 
@@ -17,6 +34,17 @@ app.use(cors());
 connect(process.env.MONGO_URI, {})
     .then(() => console.log("✅ MongoDB connected"))
     .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+async function loadModels() {
+    await faceapi.nets.tinyFaceDetector.loadFromUri('http://localhost:4000/models');
+    await faceapi.nets.faceLandmark68Net.loadFromUri('http://localhost:4000/models');
+    // await faceapi.nets.faceRecognitionNet.loadFromUri('/aiModel'); // Optional
+    await faceapi.nets.faceExpressionNet.loadFromUri('http://localhost:4000/models'); // Required for emotions
+
+    console.log("Models Loaded Successfully!");
+}
+loadModels();
+
 
 // Routes
 app.use("/api", apiRoutes);
