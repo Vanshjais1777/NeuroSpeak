@@ -65,14 +65,8 @@ export async function createUserProfile(req, res) {
 // ✅ Read (Get Single User)
 export async function getUserProfile(req, res) {
     try {
-<<<<<<< HEAD
         const { userId } = req.body
         const user = await User.findById(userId).select("-password");
-=======
-        const user = await User.findById(req.body.id).select("-password");
-        if (!user) return res.status(404).json({ message: "User not found" });
-
->>>>>>> 9bb97abdcdd65e488a1547a71155b7326a0bf943
         res.json({ user, message: "User profile fetched successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });

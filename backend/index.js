@@ -13,17 +13,12 @@ import { fileURLToPath } from "url";
 config();
 
 const app = express();
-<<<<<<< HEAD
-const PORT = process.env.PORT || 3000;
-console.log("this is sazid code");
-=======
 const PORT = process.env.PORT || 4000;
 
 // Fix __dirname issue
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
->>>>>>> 9bb97abdcdd65e488a1547a71155b7326a0bf943
 // Middleware
 app.use("/models", express.static(path.join(__dirname, "aiModel")));
 
