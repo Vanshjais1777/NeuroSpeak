@@ -1,5 +1,5 @@
 import express, { json } from "express";
-import { connect } from "mongoose"; 
+import { connect } from "mongoose";
 import { config } from "dotenv";
 import cors from "cors";
 import apiRoutes from "./routes/routes.js";
@@ -7,7 +7,7 @@ import apiRoutes from "./routes/routes.js";
 config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 console.log("this is sazid code");
 // Middleware
 app.use(json());

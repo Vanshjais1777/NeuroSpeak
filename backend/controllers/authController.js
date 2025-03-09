@@ -36,7 +36,8 @@ export async function login(req, res) {
 
 export async function getUserProfile(req, res) {
     try {
-        const user = await User.findById(req.userId).select("-password");
+        const { userId } = req.body
+        const user = await User.findById(userId).select("-password");
         res.json({ user, message: "User profile fetched successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });
