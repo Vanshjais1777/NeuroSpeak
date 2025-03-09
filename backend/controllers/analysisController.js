@@ -1,10 +1,10 @@
-import { post } from "axios";
+import axios from "axios";
 
 export async function analyzeText(req, res) {
     try {
         const { text } = req.body;
 
-        const response = await post(
+        const response = await axios.post(
             "https://api.openai.com/v1/chat/completions",
             {
                 model: "gpt-4",

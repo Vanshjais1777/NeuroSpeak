@@ -1,5 +1,5 @@
-import Progress, { find } from "../models/Progress";
-
+import Progress from "../models/Progress.js";
+import User from "../models/User.js";
 export async function saveProgress(req, res) {
     try {
         const { userId, speechAnalysis, faceAnalysis, feedback } = req.body;
@@ -21,7 +21,7 @@ export async function saveProgress(req, res) {
 
 export async function getUserProgress(req, res) {
     try {
-        const progress = await find({ userId: req.userId }).sort({ createdAt: -1 });
+        const progress = await User.find({ userId: req.userId }).sort({ createdAt: -1 });
         res.json(progress);
     } catch (error) {
         res.status(500).json({ message: error.message });

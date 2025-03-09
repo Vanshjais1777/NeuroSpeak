@@ -1,11 +1,11 @@
 import { Router } from "express";
 const router = Router();
-import { signup, login, getUserProfile } from "../controllers/authController";
-import { audioToText } from "../controllers/audioContoller";
-import { analyzeText } from "../controllers/analysisController";
-import { analyzeVideo } from "../controllers/videoController";
-import { generateFeedback } from "../controllers/feedbackController";
-import { saveProgress, getUserProgress } from "../controllers/progressContoller";
+import { signup, login, getUserProfile } from "../controllers/authController.js";
+import { audioToText } from "../controllers/audioContoller.js";
+import { analyzeText } from "../controllers/analysisController.js";
+import { analyzeVideo } from "../controllers/videoController.js";
+import { generateFeedback } from "../controllers/feedbackController.js";
+import { saveProgress, getUserProgress } from "../controllers/progressContoller.js";
 
 router.post("/signup", signup);
 router.post("/login", login);
