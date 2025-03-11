@@ -1,3 +1,7 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
 export async function generateFeedback(req, res) {
     try {
         const { textAnalysis, faceAnalysis } = req.body;
@@ -8,16 +12,12 @@ export async function generateFeedback(req, res) {
         provide detailed feedback and improvement suggestions.
       `;
 
-        const response = await axios.post(
-            "https://api.openai.com/v1/chat/completions",
-            {
-                model: "gpt-4",
-                messages: [{ role: "user", content: feedbackPrompt }],
-            },
-            { headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` } }
-        );
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-        res.json({ feedback: response.data.choices[0].message.content });
+        const result = await model.generateContent(feedbackPrompt);
+        const feedback = result.response.text();
+
+        res.json({ feedback });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

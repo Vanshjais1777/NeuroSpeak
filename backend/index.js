@@ -13,7 +13,7 @@ import { fileURLToPath } from "url";
 config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 // Fix __dirname issue
 const __filename = fileURLToPath(import.meta.url);
@@ -30,16 +30,15 @@ connect(process.env.MONGO_URI, {})
     .then(() => console.log("✅ MongoDB connected"))
     .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-async function loadModels() {
-    await faceapi.nets.tinyFaceDetector.loadFromUri('http://localhost:4000/models');
-    await faceapi.nets.faceLandmark68Net.loadFromUri('http://localhost:4000/models');
-    // await faceapi.nets.faceRecognitionNet.loadFromUri('/aiModel'); // Optional
-    await faceapi.nets.faceExpressionNet.loadFromUri('http://localhost:4000/models'); // Required for emotions
+// async function loadModels() {
+//     await faceapi.nets.tinyFaceDetector.loadFromUri('http://localhost:4000/models');
+//     await faceapi.nets.faceLandmark68Net.loadFromUri('http://localhost:4000/models');
+//     // await faceapi.nets.faceRecognitionNet.loadFromUri('/aiModel'); // Optional
+//     await faceapi.nets.faceExpressionNet.loadFromUri('http://localhost:4000/models'); // Required for emotions
 
-    console.log("Models Loaded Successfully!");
-}
-loadModels();
-
+//     console.log("Models Loaded Successfully!");
+// }
+// loadModels();
 
 // Routes
 app.use("/api", apiRoutes);

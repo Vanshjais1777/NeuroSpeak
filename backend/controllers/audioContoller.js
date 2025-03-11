@@ -1,16 +1,26 @@
-import axios from "axios";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import fs from "fs";
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export async function audioToText(req, res) {
     try {
         const { audioUrl } = req.body; // Audio file URL (uploaded via frontend)
 
-        const response = await axios.post(
-            "https://api.openai.com/v1/audio/transcriptions",
-            { file: audioUrl, model: "whisper-1" },
-            { headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` } }
-        );
+        // Read the audio file as a Buffer
+        const audioBuffer = fs.readFileSync(audioUrl);
 
-        res.json({ transcript: response.data.text });
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+        const result = await model.generateContent({
+            prompt: "Transcribe this audio into text:",
+            audio: {
+                data: audioBuffer,
+                mimeType: "audio/wav", // Change this based on your actual file type
+            },
+        });
+
+        res.json({ transcript: result.response.text() });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
