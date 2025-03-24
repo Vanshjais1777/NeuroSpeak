@@ -15,22 +15,14 @@ const NotFound = () => {
       {/* Neon Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,#00eaff22,#001a33)] opacity-40 pointer-events-none"></div>
 
-      {/* Robot Icon */}
-      <motion.div
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        transition={{ yoyo: Infinity, duration: 1.5 }}
-      >
-      </motion.div>
-
-      <div className="hidden md:flex justify-center items-center">
+      <div className="md:flex justify-center items-center">
         <Lottie animationData={Animation} className="h-96 cursor-pointer" />
       </div>
 
       {/* Home Button */}
       <motion.a
         href="/"
-        className="mt-6 px-6 py-3 bg-neon-blue text-black font-semibold text-lg rounded-lg shadow-lg hover:bg-blue-400 transition duration-300 relative"
+        className="lg:mt-6 px-6 py-3 bg-neon-blue text-black font-semibold lg:text-lg rounded-lg shadow-lg hover:bg-blue-400 transition duration-300 relative"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}

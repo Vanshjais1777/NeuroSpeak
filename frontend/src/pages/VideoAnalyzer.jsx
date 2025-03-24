@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import GradientAnimation from "../assets/VideoAnalyzer Animation.json";
 import Lottie from "lottie-react";
+import { Toaster, toast } from "react-hot-toast";
 
 const VideoAnalyzer = () => {
     const videoRef = useRef(null);
@@ -15,7 +16,7 @@ const VideoAnalyzer = () => {
             const MODEL_URL = import.meta.env.BASE_URL + "models";
             await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
             await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
-            console.log("✅ Models Loaded");
+            toast.success("Face models loaded!");
             startVideo();
         };
 
@@ -24,10 +25,10 @@ const VideoAnalyzer = () => {
 
     const startVideo = async () => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
             videoRef.current.srcObject = stream;
         } catch (error) {
-            console.error("❌ Error accessing webcam:", error);
+            toast.error("Webcam access denied!");
         }
     };
 
@@ -53,8 +54,8 @@ const VideoAnalyzer = () => {
 
     return (
         <div>
+            <Toaster position="top-center" reverseOrder={false} />
             <Header />
-
             <div className="p-10 relative min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
                 {/* Cyberpunk Grid Background */}
                 <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-px">
@@ -74,7 +75,7 @@ const VideoAnalyzer = () => {
 
                 {/* Header */}
                 <motion.h1
-                    className="md:text-4xl lg:text-6xl text-2xl underline underline-offset-4 font-semibold lg:font-extrabold text-neon-blue tracking-widest relative z-10 lg:mt-4 min-w-screen text-center"
+                    className="md:text-4xl lg:text-6xl text-2xl underline underline-offset-4 font-semibold lg:font-extrabold text-neon-blue tracking-widest relative z-10 lg:mt-20 mt-12 min-w-screen text-center"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}

@@ -6,7 +6,7 @@ const Hero = () => {
     const navigate = useNavigate();
 
     return (
-        <section className="bg-black text-white lg:h-[70vh] flex items-center justify-center relative overflow-hidden lg:pt-44 pt-20">
+        <section className="bg-black text-white lg:h-[80vh] flex items-center justify-center relative overflow-hidden lg:pt-44 pt-40">
             {/* Background Grid */}
             <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-px">
                 {[...Array(72)].map((_, i) => (
@@ -36,7 +36,7 @@ const Hero = () => {
                 <div className='flex gap-6 justify-center items-center'>
                     <button
                         onClick={() => navigate("/video-analyzer")}
-                        className="font-medium lg:px-6 px-4 lg:py-3 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out bg-neon-blue text-black cursor-pointer">
+                        className="font-medium lg:px-6 px-4 lg:py-3 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out bg-neon-blue text-black cursor-pointer border-2 border-neon-blue">
                         Try Now
                     </button>
                     <button className="font-medium lg:px-6 lg:py-3 px-4 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out border-2 border-neon-blue text-white cursor-pointer">

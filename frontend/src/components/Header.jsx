@@ -9,7 +9,7 @@ const Header = () => {
 
 
     return (
-        <header className="bg-black text-white shadow-lg relative z-50">
+        <header className="bg-black text-white shadow-lg fixed w-screen z-50 ">
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 {/* Logo */}
                 <motion.h1

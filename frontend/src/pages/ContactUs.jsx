@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import toast, { Toaster } from "react-hot-toast";
 
 const ContactUs = () => {
   const {
@@ -12,13 +13,13 @@ const ContactUs = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    alert("Message Sent Successfully!");
+    toast.success("Message Sent Successfully!");
   };
 
   return (
     <div>
       <Header />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="min-h-screen flex items-center justify-center bg-black text-white p-6 relative">
         <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-px">
           {[...Array(72)].map((_, i) => (
@@ -33,7 +34,7 @@ const ContactUs = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg relative"
+          className="w-full max-w-2xl p-8 bg-gray-800 rounded-lg shadow-lg relative my-20"
         >
           <h2 className="text-3xl font-bold text-center mb-6 text-neon-blue">
             Contact Us

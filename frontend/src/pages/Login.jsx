@@ -8,6 +8,7 @@ import Lottie from "lottie-react";
 import loginAnimation from "../assets/Login animation.json"; // Different animation for login
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -17,26 +18,28 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, data);
-      console.log("Login Success:", res.data);
-      navigate("/dashboard");
+      navigate("/");
+      toast.success("Login Successful!");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed.");
+      toast.error(err.respone?.data?.message);
     }
   };
 
   return (
     <div>
       <Header />
-      <div className="relative min-h-screen flex flex-col md:flex-row items-center justify-center bg-black overflow-hidden px-4 md:px-8 lg:px-16 gap-60 md:gap-52 sm:gap-10">
+      <Toaster position="top-center" reverseOrder={false} />
+      <div className="relative min-h-screen flex flex-col md:flex-row items-center justify-center bg-black overflow-hidden px-4 md:px-8 lg:px-16 gap-60 md:gap-52 sm:gap-10 text-sm lg:text-lg">
         {/* Glowing Background Effect */}
         <div className="absolute inset-0 z-0">
           <motion.div
-            className="absolute top-12 left-1/4 w-40 md:w-80 h-40 md:h-80 bg-indigo-500 opacity-30 blur-3xl rounded-full"
+            className="absolute top-12 left-1/4 w-40 md:w-80 h-40 md:h-80 bg-purple-600 opacity-40 blur-3xl rounded-full"
             animate={{ scale: [1, 1.5, 1] }}
             transition={{ repeat: Infinity, duration: 6 }}
           />
           <motion.div
-            className="absolute bottom-10 right-1/4 w-40 md:w-80 h-40 md:h-80 bg-cyan-500 opacity-30 blur-3xl rounded-full"
+            className="absolute bottom-10 right-1/4 w-40 md:w-80 h-40 md:h-80 bg-cyan-400 opacity-40 blur-3xl rounded-full"
             animate={{ scale: [1, 1.5, 1] }}
             transition={{ repeat: Infinity, duration: 5 }}
           />
@@ -47,9 +50,9 @@ const Login = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="relative p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md md:max-w-lg text-white z-10 bg-gray-900/80 backdrop-blur-lg"
+          className="relative p-6 md:p-8 rounded-2xl shadow-xl mt-32 mb-10 w-full max-w-md md:max-w-lg text-white z-10 bg-gray-900/80 backdrop-blur-lg"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-cyan-400 tracking-wider m-3 md:m-5 bg-slate-600/10 p-3 rounded-md">
+          <h2 className="text-2xl md:text-4xl font-bold text-center text-cyan-400 tracking-wider m-3 md:m-5 bg-slate-600/10 p-3 rounded-md">
             Welcome Back
           </h2>
 
@@ -93,7 +96,7 @@ const Login = () => {
           </div>
 
           {/* <div className="mt-4 flex justify-center">
-          <GoogleLogin onSuccess={() => console.log("Google Login Success")} onError={() => setError("Google Sign-In failed.")} />
+          <GoogleLogin onSuccess={() => toast.success("Google Login Success")} onError={() => setError("Google Sign-In failed.")} />
         </div> */}
 
           <p className="mt-4 text-gray-400 text-sm text-center">

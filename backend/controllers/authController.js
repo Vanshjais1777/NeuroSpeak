@@ -22,7 +22,7 @@ export async function login(req, res) {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ message: "Invalid credentials" });
+        if (!user) return res.status(400).json({ message: "User Not Exists" });
 
         const isMatch = await compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });

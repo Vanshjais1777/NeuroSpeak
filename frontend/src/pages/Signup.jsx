@@ -8,6 +8,7 @@ import Lottie from "lottie-react";
 import neonAnimation from "../assets/Signup animation.json"; // Futuristic animation
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import toast, { Toaster } from "react-hot-toast";
 
 const Signup = () => {
   const [error, setError] = useState("");
@@ -17,8 +18,8 @@ const Signup = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, data);
-      console.log("Signup Success:", res.data);
-      navigate("/video-analyzer");
+      toast.success("Signup Successful!");
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed.");
     }
@@ -27,7 +28,8 @@ const Signup = () => {
   return (
     <div>
       <Header />
-      <div className="relative min-h-screen flex flex-col md:flex-row items-center justify-center bg-black overflow-hidden px-4 md:px-8 lg:px-16 gap-60 md:gap-52 sm:gap-10">
+      <Toaster position="top-center" reverseOrder={false} />
+      <div className="relative min-h-screen flex flex-col md:flex-row items-center justify-center bg-black overflow-hidden px-4 md:px-8 lg:px-16 gap-60 md:gap-52 sm:gap-10 text-sm md:text-lg">
         {/* Glowing Background Effect */}
         <div className="absolute inset-0 z-0">
           <motion.div
@@ -47,9 +49,9 @@ const Signup = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="relative p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md md:max-w-lg text-white z-10 bg-gray-900/80 backdrop-blur-lg"
+          className="relative p-6 md:p-8 mt-24 mb-5 lg:mt-32 lg:mb-5 rounded-2xl shadow-xl w-full max-w-md md:max-w-lg text-white z-10 bg-gray-900/80 backdrop-blur-lg"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-cyan-400 tracking-wider m-3 md:m-5 bg-slate-600/10 p-3 rounded-md">
+          <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-center text-cyan-400 tracking-wider lg:m-3 mb-4 md:m-5 bg-slate-600/10 p-3 rounded-md">
             Create Account
           </h2>
 
@@ -103,7 +105,7 @@ const Signup = () => {
           </div>
 
           {/* <div className="mt-4 flex justify-center">
-          <GoogleLogin onSuccess={() => console.log("Google Login Success")} onError={() => setError("Google Sign-In failed.")} />
+          <GoogleLogin onSuccess={() => toast.success("signup successfull")} onError={() => setError("Google Sign-In failed.")} />
         </div> */}
 
           <p className="mt-4 text-gray-400 text-sm text-center">

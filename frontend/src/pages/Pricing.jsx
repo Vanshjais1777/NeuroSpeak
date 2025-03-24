@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const pricingPlans = [
     {
@@ -27,6 +28,7 @@ const Pricing = () => {
     return (
         <div>
             <Header />
+            <Toaster position="top-center" reverseOrder={false} />
             <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-10 relative">
                 {/* Background Grid */}
                 <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-px">
@@ -42,7 +44,7 @@ const Pricing = () => {
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-4xl font-bold text-center mb-12 text-neon-blue"
+                    className="text-4xl font-bold text-center my-12 text-neon-blue"
                 >
                     Choose Your <span className="text-blue-500">Plan</span>
                 </motion.h2>
