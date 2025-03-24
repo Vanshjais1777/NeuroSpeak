@@ -34,6 +34,27 @@ export async function login(req, res) {
     }
 }
 
+export async function googleAuth(rer, res) {
+    try {
+        const { token } = req.body;
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const { email, name, picture } = ticket.getPayload();
+
+        let user = await User.findOne({ email });
+        if (!user) {
+            user = new User({ email, name, profilePicture: picture });
+            await user.save();
+        }
+
+        res.json({ message: "Login successful", user });
+    } catch (error) {
+        res.status(400).json({ message: "Google authentication failed" });
+    }
+}
+
 // ✅ Delete User
 export async function deleteUserProfile(req, res) {
     try {
