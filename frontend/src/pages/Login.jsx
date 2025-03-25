@@ -9,20 +9,26 @@ import loginAnimation from "../assets/Login animation.json"; // Different animat
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import toast, { Toaster } from "react-hot-toast";
+import useAuthStore from "../store/authStore";
 
 const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { login } = useAuthStore();
 
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, data);
-      navigate("/");
-      toast.success("Login Successful!");
+      login(res.data.user, res.data.token);
+      toast.success("Welcome Back to NeuroSpeak!");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed.");
-      toast.error(err.respone?.data?.message);
+      const errorMessage = err.response?.data?.message || "Login failed.";
+      setError(errorMessage);
+      toast.error(errorMessage)
     }
   };
 
@@ -56,8 +62,6 @@ const Login = () => {
             Welcome Back
           </h2>
 
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label className="text-sm text-gray-300">Email</label>
@@ -66,7 +70,6 @@ const Login = () => {
                 className="w-full p-3 mt-1 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-cyan-400 outline-none"
                 placeholder="Enter your email"
               />
-              {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
             </div>
 
             <div>

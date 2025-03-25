@@ -12,7 +12,7 @@ export async function signup(req, res) {
         const newUser = new User({ name, email, password: hashedPassword });
         await newUser.save();
 
-        res.status(201).json({ message: "Signup successful" });
+        res.status(201).json({ message: "Welcome to NeuroSpeak", user: newUser });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -22,7 +22,7 @@ export async function login(req, res) {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ message: "User Not Exists" });
+        if (!user) return res.status(400).json({ message: "User Not Exists, Please Signup" });
 
         const isMatch = await compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });

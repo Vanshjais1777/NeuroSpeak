@@ -9,19 +9,25 @@ import neonAnimation from "../assets/Signup animation.json"; // Futuristic anima
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import toast, { Toaster } from "react-hot-toast";
+import useAuthStore from "../store/authStore";
 
 const Signup = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const { login } = useAuthStore();
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, data);
-      toast.success("Signup Successful!");
-      navigate("/");
+      login(res.data.user);
+      toast.success("Welcome to NeuroSpeak!");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed.");
+      toast.error(error);
     }
   };
 
