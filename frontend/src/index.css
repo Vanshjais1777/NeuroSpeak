@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-blue: #00d8ff;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}

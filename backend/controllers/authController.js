@@ -22,7 +22,7 @@ export async function login(req, res) {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ message: "Invalid credentials" });
+        if (!user) return res.status(400).json({ message: "User Not Exists" });
 
         const isMatch = await compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
@@ -31,6 +31,27 @@ export async function login(req, res) {
         res.status(200).json({ token, user });
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+}
+
+export async function googleAuth(rer, res) {
+    try {
+        const { token } = req.body;
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const { email, name, picture } = ticket.getPayload();
+
+        let user = await User.findOne({ email });
+        if (!user) {
+            user = new User({ email, name, profilePicture: picture });
+            await user.save();
+        }
+
+        res.json({ message: "Login successful", user });
+    } catch (error) {
+        res.status(400).json({ message: "Google authentication failed" });
     }
 }
 

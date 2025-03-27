@@ -9,6 +9,7 @@ import { saveProgress, getUserProgress } from "../controllers/progressContoller.
 
 router.post("/signup", signup);
 router.post("/login", login);
+// router.post("/google-auth", googleAuth)
 
 router.get("/profile", getUserProfile);
 router.delete("/profile", deleteUserProfile);

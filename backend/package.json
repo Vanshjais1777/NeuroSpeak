@@ -20,6 +20,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "face-api.js": "^0.22.2",
+    "google-auth-library": "^9.15.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.1",
     "multer": "^1.4.5-lts.1",
