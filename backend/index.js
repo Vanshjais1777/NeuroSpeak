@@ -12,7 +12,14 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(json());
-app.use(cors());
+
+const corsOptions = {
+    origin: ["https://neurospeak.onrender.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 connect(process.env.MONGO_URI, {})
