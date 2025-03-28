@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-
+import audioLogo from "../assets/audio-svgrepo-com.svg";
+import videoLogo from "../assets/video-svgrepo-com.svg";
 const Hero = () => {
     const navigate = useNavigate();
 
@@ -38,13 +39,13 @@ const Hero = () => {
                         onClick={() => navigate("/video-analyzer")}
                         className="font-medium lg:px-6 px-4 lg:py-3 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out bg-neon-blue text-black cursor-pointer border-2 border-neon-blue flex justify-center items-center gap-2 hover:bg-transparent hover:text-white">
                         <p>Video Mode</p>
-                        <img className='h-8 w-8' src="src/assets/video-svgrepo-com.svg" alt="" />
+                        <img className='h-8 w-8' src={videoLogo} alt="" />
                     </button>
                     <button
                         onClick={() => navigate("/audio-analyzer")}
                         className="font-medium lg:px-6 lg:py-3 px-4 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out border-2 border-neon-blue text-white cursor-pointer flex justify-center items-center gap-2 hover:bg-cyan-400 hover:text-black">
                         <p>Audio Mode</p>
-                        <img className='h-8 w-8' src="src/assets/audio-svgrepo-com.svg" alt="" />
+                        <img className='h-8 w-8' src={audioLogo} alt="" />
                     </button>
                 </div>
             </motion.div>
