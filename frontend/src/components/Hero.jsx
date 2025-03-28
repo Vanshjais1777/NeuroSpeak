@@ -36,11 +36,15 @@ const Hero = () => {
                 <div className='flex gap-6 justify-center items-center'>
                     <button
                         onClick={() => navigate("/video-analyzer")}
-                        className="font-medium lg:px-6 px-4 lg:py-3 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out bg-neon-blue text-black cursor-pointer border-2 border-neon-blue">
-                        Try Now
+                        className="font-medium lg:px-6 px-4 lg:py-3 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out bg-neon-blue text-black cursor-pointer border-2 border-neon-blue flex justify-center items-center gap-2 hover:bg-transparent hover:text-white">
+                        <p>Video Mode</p>
+                        <img className='h-8 w-8' src="src/assets/video-svgrepo-com.svg" alt="" />
                     </button>
-                    <button className="font-medium lg:px-6 lg:py-3 px-4 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out border-2 border-neon-blue text-white cursor-pointer">
-                        Watch Demo
+                    <button
+                        onClick={() => navigate("/audio-analyzer")}
+                        className="font-medium lg:px-6 lg:py-3 px-4 py-2 rounded-md lg:text-lg transition duration-300 ease-in-out border-2 border-neon-blue text-white cursor-pointer flex justify-center items-center gap-2 hover:bg-cyan-400 hover:text-black">
+                        <p>Audio Mode</p>
+                        <img className='h-8 w-8' src="src/assets/audio-svgrepo-com.svg" alt="" />
                     </button>
                 </div>
             </motion.div>
