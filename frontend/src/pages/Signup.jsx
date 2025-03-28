@@ -26,8 +26,9 @@ const Signup = () => {
         navigate("/");
       }, 1000);
     } catch (err) {
-      setError(err.response?.data?.message || "Signup failed.");
-      toast.error(error);
+      const errorMessage = err.response?.data?.message || "Signup failed.";
+      setError(errorMessage);
+      toast.error(errorMessage);
     }
   };
 
