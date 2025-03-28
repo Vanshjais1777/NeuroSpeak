@@ -50,7 +50,81 @@ async function getTranscriptionResult(transcriptId) {
         const response = await axios.get(url, {
             headers: { authorization: ASSEMBLYAI_API_KEY }
         });
+import multer from "multer";
+import path from "path";
+import axios from "axios";
+import dotenv from "dotenv";
 
+dotenv.config();
+
+// AssemblyAI API Key
+const ASSEMBLYAI_API_KEY = process.env.ASSEMBLYAI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+
+// 🔹 Function to Upload Audio to AssemblyAI
+async function uploadAudioFile(filePath) {
+    try {
+        const fileData = fs.readFileSync(filePath);
+        const response = await axios.post("https://api.assemblyai.com/v2/upload", fileData, {
+            headers: {
+                authorization: ASSEMBLYAI_API_KEY,
+                "content-type": "application/octet-stream"
+            }
+        });
+        return response.data.upload_url;
+    } catch (error) {
+        console.error("Error uploading file:", error);
+        throw new Error("Failed to upload audio file");
+    }
+}
+
+// 🔹 Function to Request Transcription
+async function requestTranscription(audioUrl) {
+    try {
+        const response = await axios.post("https://api.assemblyai.com/v2/transcript", { audio_url: audioUrl }, {
+            headers: { authorization: ASSEMBLYAI_API_KEY }
+        });
+        return response.data.id;
+    } catch (error) {
+        console.error("Error requesting transcription:", error);
+        throw new Error("Failed to request transcription");
+    }
+}
+
+// 🔹 Function to Check Transcription Status
+async function getTranscriptionResult(transcriptId) {
+    const url = `https://api.assemblyai.com/v2/transcript/${transcriptId}`;
+    while (true) {
+        const response = await axios.get(url, {
+            headers: { authorization: ASSEMBLYAI_API_KEY }
+        });
+
+        console.log("Current Status:", response.data.status);
+
+        if (response.data.status === "completed") {
+            return response.data.text;
+        } else if (response.data.status === "failed") {
+            throw new Error("Transcription failed");
+        }
+
+        // Wait before checking again
+        await new Promise(resolve => setTimeout(resolve, 5000));
+    }
+}
+
+// 🔹 Configure Multer for File Uploads
+const storage = multer.diskStorage({
+    destination: "./uploads/",
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage });
+
+// 🔹 Handle Audio Upload & Processing
         console.log("Current Status:", response.data.status);
 
         if (response.data.status === "completed") {
@@ -121,9 +195,13 @@ export async function audioToText(req, res) {
 
     } catch (error) {
         console.error("Error:", error);
+        console.error("Error:", error);
         res.status(500).json({ message: error.message });
     }
 }
+
+// 🔹 Export Middleware for File Upload
+export const uploadAudio = upload.single("audio");
 
 // 🔹 Export Middleware for File Upload
 export const uploadAudio = upload.single("audio");
