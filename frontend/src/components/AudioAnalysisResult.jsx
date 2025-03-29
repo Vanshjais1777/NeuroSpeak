@@ -31,22 +31,29 @@ const TranscriptionResult = ({ data }) => {
 
             <h2 className="text-2xl font-bold mt-6 mb-4 text-center text-yellow-400">🔍 Grammar Suggestions</h2>
             <div className="space-y-4">
-                {analysis.grammar.length > 0 ? (
-                    analysis.grammar.map((issue, index) => (
-                        <div key={index} className="p-4 bg-gray-800 border border-gray-700 rounded-lg shadow-md">
-                            <p className="text-red-400 font-bold flex items-center">
-                                <AlertTriangle className="mr-2" /> {issue.error}
-                            </p>
-                            <p className="text-gray-300 italic">{issue.description}</p>
-                            <p className="text-green-300 font-semibold mt-2">💡 Suggestion: {issue.suggestion}</p>
-                        </div>
-                    ))
+                {Array.isArray(analysis.grammar) ? (
+                    analysis.grammar.length > 0 ? (
+                        analysis.grammar.map((issue, index) => (
+                            <div key={index} className="p-4 bg-gray-800 border border-gray-700 rounded-lg shadow-md">
+                                <p className="text-red-400 font-bold flex items-center">
+                                    <AlertTriangle className="mr-2" /> {issue.error}
+                                </p>
+                                <p className="text-gray-300 italic">{issue.description}</p>
+                                <p className="text-green-300 font-semibold mt-2">💡 Suggestion: {issue.suggestion}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="text-green-400 flex items-center">
+                            <CheckCircle className="mr-2" /> No Grammar Issues Found! ✅
+                        </p>
+                    )
                 ) : (
-                    <p className="text-green-400 flex items-center">
-                        <CheckCircle className="mr-2" /> No Grammar Issues Found! ✅
-                    </p>
+                    <div className="p-4 bg-gray-800 border border-gray-700 rounded-lg shadow-md">
+                        <p className="text-gray-300 italic">{analysis.grammar}</p>
+                    </div>
                 )}
             </div>
+
         </div>
     );
 };

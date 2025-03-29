@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(json());
 
 const corsOptions = {
-    origin: ["https://neurospeak.onrender.com"],
+    origin: ["https://neurospeak.onrender.com", `http://localhost:5173`],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 };
