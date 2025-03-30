@@ -109,7 +109,7 @@ const AudioAnalyzer = () => {
       setData(response.data);
     } catch (error) {
       console.error("Upload Failed:", error);
-      toast.error("Failed to upload recorded audio.");
+      toast.error("Failed to upload recorded audio try once again.");
     } finally {
       setUploading(false);
     }
@@ -174,9 +174,9 @@ const AudioAnalyzer = () => {
               {uploading ? "Uploading..." : "Upload Audio"}
             </button>
           </div>
-
+          <div className="mt-3 font-medium text-xl">OR</div>
           {/* Recording Section */}
-          <div className="mt-6 flex flex-col justify-center items-center">
+          <div className="mt-3 flex flex-col justify-center items-center">
             {recording ? (
               <button
                 onClick={handleRecordStop}
