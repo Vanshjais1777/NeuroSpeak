@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI=mongodb+srv://vanshjais1777:neuro123@cluster0.zcy8a0y.mongodb.net/
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    env_file:
+      - ./frontend/.env  # Load .env from frontend folder
