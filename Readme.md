@@ -39,4 +39,4 @@ This project is an AI-powered communication improvement tool designed to enhance
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/Vanshjais1777/neuro-speak.git]
+git clone [[https://github.com/Vanshjais1777/neuro-speak.git]](https://github.com/Vanshjais1777/NeuroSpeak.git)
