@@ -41,7 +41,8 @@ This project is an AI-powered communication improvement tool designed to enhance
 ```bash
 git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
 cd your-repo-name
-2. Install Dependencies
+---
+### 2. Install Dependencies
 Frontend:
 
 ```bash
