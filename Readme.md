@@ -20,16 +20,16 @@ This project is an AI-powered communication improvement tool designed to enhance
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React / Vite / Tailwind CSS  
-- **Backend**: Node.js / Express  
-- **AI & ML**: Python (for model inference), OpenAI / Hugging Face APIs  
-- **Others**: WebRTC (for video), Speech Recognition APIs  
+- **Frontend**: React / Vite / Tailwind CSS
+- **Backend**: Node.js / Express
+- **AI & ML**: Python (for model inference), OpenAI / Hugging Face APIs
+- **Others**: WebRTC (for video), Speech Recognition APIs
 
 ---
 
 ## 📸 Demo
 
-> 🔗 **[Live Demo](https://your-live-link.com)**  
+> 🔗 **[Live Demo](https://your-live-link.com)**
 > 🧠 **[GitHub Repo](https://github.com/yourusername/your-repo-name)**
 
 ---
@@ -39,5 +39,41 @@ This project is an AI-powered communication improvement tool designed to enhance
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
+git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
 cd your-repo-name
+2. Install Dependencies
+Frontend:
+
+Bash
+
+cd frontend
+npm install
+Backend:
+
+Bash
+
+cd ../backend
+npm install
+3. Start the Application
+Run backend:
+
+Bash
+
+cd ../backend
+npm start
+Run frontend:
+
+Bash
+
+cd ../frontend
+npm run dev
+Then open your browser and visit: http://localhost:5173
+
+Folder Structure
+root/
+├── backend/
+│   └── ... Express backend & AI APIs
+├── frontend/
+│   └── ... React app
+├── README.md
+└── ...
