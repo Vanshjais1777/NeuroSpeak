@@ -1,6 +1,13 @@
+Here's your README.md in clean Markdown format, ready to copy into your GitHub repo:
+
+markdown
+Copy
+Edit
 # 🎤 AI-Driven Public Speaking & Interview Enhancement Tool
 
 This project is an AI-powered communication improvement tool designed to enhance users' public speaking and interview skills. It provides **real-time video and audio analysis**, offering valuable feedback to help users refine their delivery, expressions, and confidence.
+
+---
 
 ## 🚀 Features
 
@@ -14,41 +21,47 @@ This project is an AI-powered communication improvement tool designed to enhance
 - Analyzes **confidence level**, **fear**, and **nervousness** based on tone and speech patterns.
 - Gives actionable feedback to improve verbal fluency and speech delivery.
 
+---
+
 ## 🛠️ Tech Stack
-- **Frontend**: React / Vite / Tailwind CSS
-- **Backend**: Node.js / Express
-- **AI & ML**: Python (for model inference), OpenAI / Hugging Face APIs
-- **Others**: WebRTC (for video), Speech Recognition APIs
+
+- **Frontend**: React / Vite / Tailwind CSS  
+- **Backend**: Node.js / Express  
+- **AI & ML**: Python (for model inference), OpenAI / Hugging Face APIs  
+- **Others**: WebRTC (for video), Speech Recognition APIs  
+
+---
 
 ## 📸 Demo
 
 > 🔗 **[Live Demo](https://your-live-link.com)**  
 > 🧠 **[GitHub Repo](https://github.com/yourusername/your-repo-name)**
 
+---
+
 ## 🧑‍💻 How to Run Locally
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
-Install Dependencies
+### 1. Clone the Repository
 
-For frontend:
+```bash
+git clone https://github.com/yourusername/your-repo-name.git
+cd your-repo-name
+2. Install Dependencies
+Frontend:
 
 bash
 Copy
 Edit
 cd frontend
 npm install
-For backend:
+Backend:
 
 bash
 Copy
 Edit
-cd backend
+cd ../backend
 npm install
-Start the Application
-
+3. Start the Application
 Run backend:
 
 bash
@@ -60,8 +73,9 @@ Run frontend:
 bash
 Copy
 Edit
+cd ../frontend
 npm run dev
-Open http://localhost:5173 in your browser.
+Then open your browser and visit: http://localhost:5173
 
 📂 Folder Structure
 Copy
@@ -83,4 +97,16 @@ Support for multiple languages.
 Interview simulation mode with AI-generated questions.
 
 🙌 Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
+Pull requests are welcome!
+For major changes, please open an issue first to discuss what you’d like to change.
+
+📃 License
+This project is licensed under the MIT License.
+
+yaml
+Copy
+Edit
+
+---
+
+Let me know if you'd like to include badges (like `Live`, `License`, `Made with ❤️`) or images/gifs of
