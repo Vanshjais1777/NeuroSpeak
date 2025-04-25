@@ -29,8 +29,7 @@ This project is an AI-powered communication improvement tool designed to enhance
 
 ## 📸 Demo
 
-> 🔗 **[Live Demo](https://your-live-link.com)**
-> 🧠 **[GitHub Repo](https://github.com/yourusername/your-repo-name)**
+> 🔗 **[Live Demo](https://neurospeak.onrender.com)**
 
 ---
 
