@@ -44,26 +44,26 @@ cd your-repo-name
 2. Install Dependencies
 Frontend:
 
-Bash
+```bash
 
 cd frontend
 npm install
 Backend:
 
-Bash
+```bash
 
 cd ../backend
 npm install
 3. Start the Application
 Run backend:
 
-Bash
+```bash
 
 cd ../backend
 npm start
 Run frontend:
 
-Bash
+```bash
 
 cd ../frontend
 npm run dev
