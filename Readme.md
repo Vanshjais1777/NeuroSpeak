@@ -22,7 +22,7 @@ This project is an AI-powered communication improvement tool designed to enhance
 
 - **Frontend**: React / Vite / Tailwind CSS
 - **Backend**: Node.js / Express
-- **AI & ML**: Python (for model inference), OpenAI / Hugging Face APIs
+- **AI & ML**: Python (for model inference), OpenAI / FaceAPI.js
 - **Others**: WebRTC (for video), Speech Recognition APIs
 
 ---
