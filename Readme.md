@@ -39,42 +39,4 @@ This project is an AI-powered communication improvement tool designed to enhance
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
-cd your-repo-name
----
-### 2. Install Dependencies
-Frontend:
-
-```bash
-
-cd frontend
-npm install
-Backend:
-
-```bash
-
-cd ../backend
-npm install
-3. Start the Application
-Run backend:
-
-```bash
-
-cd ../backend
-npm start
-Run frontend:
-
-```bash
-
-cd ../frontend
-npm run dev
-Then open your browser and visit: http://localhost:5173
-
-Folder Structure
-root/
-├── backend/
-│   └── ... Express backend & AI APIs
-├── frontend/
-│   └── ... React app
-├── README.md
-└── ...
+git clone [https://github.com/Vanshjais1777/neuro-speak.git]
